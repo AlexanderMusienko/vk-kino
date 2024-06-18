@@ -1,12 +1,18 @@
-import { Text } from "@/shared/ui/Text";
 import { useSearchParams } from "react-router-dom";
+import { MOVIES_LIST_MOCK } from "../../mock";
+import { MovieItem } from "./components/MovieItem";
+import { Grid, Box } from "@mui/material";
 
 export const Movies = () => {
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("filter"));
   return (
-    <div>
-      <h1>Movies</h1>
-    </div>
+    <Grid container alignItems="stretch" spacing={2}>
+      {MOVIES_LIST_MOCK.docs.map((movie) => (
+        <Grid item xs={12} sm={4} lg={3}>
+          <MovieItem key={movie.id} {...movie} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };

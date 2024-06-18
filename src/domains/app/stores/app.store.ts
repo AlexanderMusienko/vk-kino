@@ -1,7 +1,6 @@
+import { RootStore } from "@/common/stores/root.store";
 import { makeAutoObservable } from "mobx";
-import { ETheme, TTheme } from "@/common/types/theme.type";
-import { theme } from "@/common/constants/theme";
-import { RootStore } from "./root.store";
+import { ETheme } from "@/common/types/theme.type";
 
 export class AppStore {
   rootStore: RootStore;
@@ -11,9 +10,9 @@ export class AppStore {
     this.rootStore = rootStore;
   }
 
-  currentTheme: TTheme = ETheme.DARK;
+  currentTheme: ETheme = ETheme.DARK;
 
-  setCurrentTheme = (theme: TTheme) => {
+  setCurrentTheme = (theme: ETheme) => {
     this.currentTheme = theme;
   };
 }

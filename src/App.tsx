@@ -4,12 +4,28 @@ import { PageLayout } from "./shared/layouts/PageLayout";
 import "./styles/index.css";
 import "./styles/reset.css";
 import "./styles/normalize.css";
-import { theme } from "./common/constants/theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Movies } from "./domains/movies/pages/movies";
 import { Movie } from "./domains/movies/pages/movie";
+import { observer } from "mobx-react-lite";
+import { useStores } from "./common/hooks/use-stores";
+import { useMemo } from "react";
 
 function App() {
+  const {
+    appStore: { currentTheme },
+  } = useStores();
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: currentTheme,
+        },
+      }),
+    [currentTheme]
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -29,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

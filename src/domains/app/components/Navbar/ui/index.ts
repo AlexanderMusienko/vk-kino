@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-
+debugger;
 export const NavbarContainer = styled("nav")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
