@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { MOVIES_LIST_MOCK } from "../../mock";
 import { MovieItem } from "./components/MovieItem";
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export const Movies = () => {
   const [searchParams] = useSearchParams();

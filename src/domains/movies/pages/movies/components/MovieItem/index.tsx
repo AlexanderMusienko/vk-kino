@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, useTheme } from "@mui/material";
+import { Card, CardContent, CardHeader, Grow, useTheme } from "@mui/material";
 import { FC } from "react";
 import { Poster } from "../Poster";
 import { generatePath, useNavigate } from "react-router-dom";
@@ -34,37 +34,39 @@ export const MovieItem: FC<TMovieItemProps> = ({
   };
 
   return (
-    <Card
-      onClick={onCardClick}
-      sx={{
-        cursor: "pointer",
-        position: "relative",
-        borderRadius: "16px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: {
-          xs: "500px",
-          sm: "400px",
-          md: "450px",
-        },
-      }}
-    >
-      <CardContent>
-        <Poster
-          rating={{ score: rating.imdb, reviewer: "imdb" }}
-          src={poster?.previewUrl || poster?.url}
-        />
-      </CardContent>
-      <CardHeader
+    <Grow in={true} timeout={1000}>
+      <Card
+        onClick={onCardClick}
         sx={{
-          zIndex: 5,
-          height: "20%",
-          backgroundColor: theme.palette.background.default,
+          cursor: "pointer",
+          position: "relative",
+          borderRadius: "16px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          height: {
+            xs: "500px",
+            sm: "400px",
+            md: "450px",
+          },
         }}
-        title={name || alternativeName}
-        subheader={year}
-      />
-    </Card>
+      >
+        <CardContent>
+          <Poster
+            rating={{ score: rating.imdb, reviewer: "imdb" }}
+            src={poster?.previewUrl || poster?.url}
+          />
+        </CardContent>
+        <CardHeader
+          sx={{
+            zIndex: 5,
+            height: "20%",
+            backgroundColor: theme.palette.background.default,
+          }}
+          title={name || alternativeName}
+          subheader={year}
+        />
+      </Card>
+    </Grow>
   );
 };
