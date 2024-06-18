@@ -42,4 +42,8 @@ export const RateChip = styled(Chip)(({ theme }) => ({
   top: "15px",
   backgroundColor: theme.palette.background.default,
   fontWeight: 600,
+
+  "& span": {
+    fontSize: "14px",
+  },
 }));

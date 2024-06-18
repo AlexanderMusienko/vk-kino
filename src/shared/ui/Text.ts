@@ -12,10 +12,13 @@ export const Text = styled("p")<TextProps>(
     fontWeight = "400",
     lineHeight = "1.5",
     letterSpacing = "normal",
+    theme,
+    color = theme.palette.text.primary,
   }) => ({
     fontSize,
     fontWeight,
     lineHeight,
     letterSpacing,
+    color,
   })
 );

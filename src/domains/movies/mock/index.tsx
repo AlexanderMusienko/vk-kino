@@ -2610,3 +2610,69 @@ export const MOVIES_LIST_MOCK = {
   page: 1,
   pages: 21144,
 };
+
+export const MOVIE_EXEMPLAR = {
+  id: 5613565,
+  name: "Бармен: Бокал бога",
+  alternativeName: "Bartender: Kami no Glass",
+  type: "anime",
+  typeNumber: 4,
+  year: 2024,
+  description:
+    "Управляющий известным токийским отелем Cardinal хочет нанять бармена, но основное требование к будущему сотруднику одно — умение приготовить напиток «Бокал бога». Однако все претенденты оказались не в состоянии выполнить главное условие для получения работы. Однажды управляющий посещает уютный бар Eden Hall, который расположен в тихом месте недалеко от оживлённых улиц Гиндзы. За стойкой его обслуживает Рю Сасакура — хозяин заведения и талантливый миксолог, который поражает гостя талантами и умением подать именно тот коктейль, который приносит клиенту покой и умиротворение. Рю сразу же предлагают работу в Cardinal, но парень отвечает отказом. Не оставляя попыток заполучить столь ценного кадра, глава отеля становится завсегдатаем Eden Hall.",
+  shortDescription: null,
+  status: null,
+  rating: {
+    kp: 0,
+    imdb: 6.6,
+    filmCritics: 0,
+    russianFilmCritics: 0,
+    await: 0,
+  },
+  votes: {
+    kp: 17,
+    imdb: 198,
+    filmCritics: 0,
+    russianFilmCritics: 0,
+    await: 0,
+  },
+  movieLength: null,
+  totalSeriesLength: null,
+  seriesLength: 23,
+  ratingMpaa: null,
+  ageRating: null,
+  poster: {
+    url: "https://image.openmoviedb.com/kinopoisk-images/4483445/00ac8463-d518-42d5-a93d-f348c867b3d6/orig",
+    previewUrl:
+      "https://image.openmoviedb.com/kinopoisk-images/4483445/00ac8463-d518-42d5-a93d-f348c867b3d6/x1000",
+  },
+  genres: [
+    {
+      name: "аниме",
+    },
+    {
+      name: "мультфильм",
+    },
+    {
+      name: "драма",
+    },
+    {
+      name: "комедия",
+    },
+  ],
+  countries: [
+    {
+      name: "Япония",
+    },
+  ],
+  releaseYears: [
+    {
+      start: 2024,
+      end: null,
+    },
+  ],
+  top10: null,
+  top250: null,
+  isSeries: true,
+  ticketsOnSale: false,
+};

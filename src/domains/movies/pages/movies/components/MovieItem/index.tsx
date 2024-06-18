@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, useTheme } from "@mui/material";
 import { FC } from "react";
 import { Poster } from "../Poster";
+import { generatePath, useNavigate } from "react-router-dom";
+import { ROUTES_MAPPING } from "@/common/constants/routes";
 
 type TMovieItemProps = {
   name: string;
@@ -15,15 +17,25 @@ export const MovieItem: FC<TMovieItemProps> = ({
   name,
   poster,
   rating,
-  id,
+  id: movieID,
   year,
   alternativeName,
   ...props
 }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const linkPath = generatePath(ROUTES_MAPPING.PUBLIC.MOVIE, {
+    id: movieID,
+  });
+
+  const onCardClick = () => {
+    navigate(linkPath);
+  };
 
   return (
     <Card
+      onClick={onCardClick}
       sx={{
         cursor: "pointer",
         position: "relative",
@@ -48,7 +60,7 @@ export const MovieItem: FC<TMovieItemProps> = ({
         sx={{
           zIndex: 5,
           height: "20%",
-          background: `linear-gradient(to bottom, ${theme.palette.background.default}, ${theme.palette.background.default})`,
+          backgroundColor: theme.palette.background.default,
         }}
         title={name || alternativeName}
         subheader={year}
