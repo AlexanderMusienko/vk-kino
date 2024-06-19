@@ -109,6 +109,9 @@ export const FiltersControl: FC<TFiltersControl> = ({ onChange, onClick }) => {
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Жанр" />}
             onChange={onGenresChange}
+            value={genresOptions.filter((option) =>
+              genres.includes(option.value)
+            )}
           />
 
           <InputLabel sx={{ marginTop: 3 }}>Рейтинг</InputLabel>

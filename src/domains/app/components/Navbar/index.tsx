@@ -13,9 +13,9 @@ export const Navbar = () => {
         <Link component={RouterLink} to={ROUTES_MAPPING.ROOT}>
           <Logo />
         </Link>
-        <Link component={RouterLink} to={ROUTES_MAPPING.PUBLIC.FAVORITES}>
+        {/* <Link component={RouterLink} to={ROUTES_MAPPING.PUBLIC.FAVORITES}>
           <Text>Favorites</Text>
-        </Link>
+        </Link> */}
       </Box>
 
       <ThemeButton />

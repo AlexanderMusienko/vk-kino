@@ -16,19 +16,18 @@ import { useStores } from "@/common/hooks/use-stores";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { LoadingMovie } from "./components/LoadingMovie";
-const currentMovie = MOVIE_EXEMPLAR;
 
 export const Movie = observer(() => {
   const {
-    moviesStore: { getCurrentMovie, isLoading },
+    moviesStore: { getCurrentMovie, isLoading, currentMovie },
   } = useStores();
 
   const { id } = useParams();
   const theme = useTheme();
 
   useEffect(() => {
-    console.log(currentMovie);
-  }, [currentMovie]);
+    getCurrentMovie(Number(id));
+  }, [id]);
 
   console.log(
     qs.stringify({ a: "bbb", b: ["123", "111"] }, { indices: false })
@@ -55,7 +54,11 @@ export const Movie = observer(() => {
                 textAlign="center"
               >
                 <Image
-                  alt={currentMovie.name || currentMovie.alternativeName}
+                  alt={
+                    currentMovie.name ||
+                    currentMovie.alternativeName ||
+                    "poster"
+                  }
                   src={
                     currentMovie.poster.url || currentMovie.poster.previewUrl
                   }
@@ -113,13 +116,6 @@ export const Movie = observer(() => {
           </Box>
         )
       )}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => getCurrentMovie(Number(id))}
-      >
-        Get movie
-      </Button>
     </>
   );
 });

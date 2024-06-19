@@ -27,20 +27,22 @@ export const Movies = observer(() => {
   };
 
   useEffect(() => {
-    // if (paginationInfo?.currentPage) {
-    //   getMoviesList(filters, page);
-    // }
-  }, [paginationInfo?.currentPage, filters, page]);
+    if (page === 1) {
+      getMoviesList(page, filters);
+    }
+    setPage(1);
+  }, [filters]);
 
   useEffect(() => {
-    // getMoviesList(page, filters);
+    if (page !== 1) {
+      getMoviesList(page, filters);
+    }
   }, [page]);
 
   return (
     <Grid container alignItems="stretch" spacing={2}>
       <Grid item xs={12}>
         <FiltersControl onClick={onFiltersApply} />
-        <Button onClick={() => getMoviesList(page, filters)}>Get movies</Button>
       </Grid>
       {isLoading ? (
         <LoadingMovies />
