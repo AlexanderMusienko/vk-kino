@@ -8,6 +8,10 @@ export type TPoster = {
   previewUrl: string | null;
 };
 
+export type TGenres = {
+  name: string;
+};
+
 export interface IMovie {
   id: string;
   name: string | null;
@@ -15,6 +19,6 @@ export interface IMovie {
   description: string | null;
   rating: TRating;
   poster: TPoster;
-  genres: string[];
+  genres: TGenres[];
   year: number;
 }

@@ -4,8 +4,8 @@ import { SxProps, Theme } from "@mui/material";
 import { S } from "./ui";
 
 type TImageProps = {
-  src?: string;
-  alt: string;
+  src?: string | null;
+  alt?: string;
   imgSx?: SxProps<Theme>;
   sx?: SxProps<Theme>;
 };

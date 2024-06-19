@@ -11,13 +11,17 @@ export class MoviesStore {
     this.rootStore = rootStore;
   }
 
+  isLoading: boolean = false;
+
   moviesList: IMovie[] = [];
 
   currentMovie: IMovie | null = null;
 
   getCurrentMovie = (id: number) => {
-    MovieAPI.getMovie(id).then((res) => {
+    this.isLoading = true;
+    return MovieAPI.getMovie(id).then((res) => {
       this.currentMovie = res;
+      this.isLoading = false;
     });
   };
 }
