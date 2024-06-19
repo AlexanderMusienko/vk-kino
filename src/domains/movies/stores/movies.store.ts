@@ -1,6 +1,7 @@
 import { RootStore } from "@/common/stores/root.store";
 import { makeAutoObservable } from "mobx";
-import { ETheme } from "@/common/types/theme.type";
+import { IMovie } from "../models/movie.model";
+import { MovieAPI } from "../services/movie.service";
 
 export class MoviesStore {
   rootStore: RootStore;
@@ -10,5 +11,13 @@ export class MoviesStore {
     this.rootStore = rootStore;
   }
 
-  
+  moviesList: IMovie[] = [];
+
+  currentMovie: IMovie | null = null;
+
+  getCurrentMovie = (id: number) => {
+    MovieAPI.getMovie(id).then((res) => {
+      this.currentMovie = res;
+    });
+  };
 }

@@ -9,7 +9,9 @@ import { Text } from "@/shared/ui/Text";
 export const Navbar = () => {
   return (
     <NavbarContainer>
-      <Logo />
+      <Link component={RouterLink} to={ROUTES_MAPPING.ROOT}>
+        <Logo />
+      </Link>
       <Link component={RouterLink} to={ROUTES_MAPPING.PUBLIC.FAVORITES}>
         <Text>Favorites</Text>
       </Link>

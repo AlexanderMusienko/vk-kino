@@ -1,19 +1,36 @@
 import { useParams } from "react-router-dom";
 import { MOVIE_EXEMPLAR } from "../../mock";
-import { Box, Chip, Grow, Paper, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  Grow,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { Image } from "@/shared/components/Image";
 import { Text } from "@/shared/ui/Text";
+import qs from "qs";
+import { useStores } from "@/common/hooks/use-stores";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 const movie = MOVIE_EXEMPLAR;
 
-export const Movie = () => {
+export const Movie = observer(() => {
   const { id } = useParams();
   const theme = useTheme();
+  const {
+    moviesStore: { currentMovie, getCurrentMovie },
+  } = useStores();
 
-  const truncateAfterThirdDot = (str: string) => {
-    const parts = str.split(".");
-    if (parts.length <= 3) return str;
-    return parts.slice(0, 3).join(".") + ".";
-  };
+  useEffect(() => {
+    console.log(currentMovie);
+  }, [currentMovie]);
+
+  console.log(
+    qs.stringify({ a: "bbb", b: ["123", "111"] }, { indices: false })
+  );
 
   return (
     <Box flexDirection="row" display="flex" justifyContent="start" gap={3}>
@@ -29,6 +46,13 @@ export const Movie = () => {
             src={movie.poster.url}
             sx={{ borderRadius: "24px", overflow: "hidden", minWidth: "320px" }}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => getCurrentMovie(Number(id))}
+          >
+            Get movie
+          </Button>
         </Box>
       </Grow>
       <Box display="flex" flexDirection="column" gap={1}>
@@ -62,4 +86,4 @@ export const Movie = () => {
       </Box>
     </Box>
   );
-};
+});
