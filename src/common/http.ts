@@ -74,7 +74,7 @@ export const axiosRequest = async <TRequestData, TResponseData = void>({
     );
     config.headers = { ...config.headers, ...header };
   }
-  console.log(API_KEY, "api key");
+
   if (API_KEY) {
     config.headers = {
       ...config.headers,
