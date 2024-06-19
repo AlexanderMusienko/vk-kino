@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { LoadingMovies } from "./components/LoadingMovies";
 import { useStores } from "@/common/hooks/use-stores";
+import FiltersControl from "./components/FiltersControl";
 
 export const Movies = observer(() => {
   const {
@@ -14,6 +15,9 @@ export const Movies = observer(() => {
   console.log(searchParams.get("filter"));
   return (
     <Grid container alignItems="stretch" spacing={2}>
+      <Grid item xs={12}>
+        <FiltersControl />
+      </Grid>
       {isLoading ? (
         <LoadingMovies />
       ) : (
