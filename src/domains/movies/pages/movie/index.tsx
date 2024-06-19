@@ -1,14 +1,5 @@
 import { useParams } from "react-router-dom";
-import { MOVIE_EXEMPLAR } from "../../mock";
-import {
-  Box,
-  Button,
-  Chip,
-  Grow,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Chip, Grow, Typography, useTheme } from "@mui/material";
 import { Image } from "@/shared/components/Image";
 import { Text } from "@/shared/ui/Text";
 import qs from "qs";
@@ -85,9 +76,11 @@ export const Movie = observer(() => {
                   </Typography>
                 </Grow>
               )}
-              <Typography variant="h4">
-                Дата выхода: {currentMovie?.year}
-              </Typography>
+              {currentMovie?.year && (
+                <Typography variant="h4">
+                  Дата выхода: {currentMovie?.year}
+                </Typography>
+              )}
               {currentMovie?.genres.length > 0 && (
                 <Box flexDirection="row" display="flex" gap={1} flexWrap="wrap">
                   {currentMovie.genres.map(({ name }) => (
