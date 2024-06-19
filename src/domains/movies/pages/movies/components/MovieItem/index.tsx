@@ -5,12 +5,12 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { ROUTES_MAPPING } from "@/common/constants/routes";
 
 type TMovieItemProps = {
-  name: string;
-  poster: { url: string; previewUrl: string };
+  name: string | null;
+  poster: { url: string | null; previewUrl: string | null };
   rating: { imdb: number };
-  id: number;
-  year: string;
-  alternativeName: string;
+  id: string;
+  year: number;
+  alternativeName: string | null;
 };
 
 export const MovieItem: FC<TMovieItemProps> = ({

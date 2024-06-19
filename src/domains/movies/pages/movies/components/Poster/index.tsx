@@ -3,7 +3,7 @@ import { PosterContainer, PosterImage, RateChip } from "./ui";
 import { NoImage } from "@/assets/icons/no-image";
 
 type TPosterProps = {
-  src: string;
+  src: string | null;
   rating: {
     score: number;
     reviewer: string;
