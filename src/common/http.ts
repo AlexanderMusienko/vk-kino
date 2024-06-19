@@ -31,7 +31,7 @@ export type ApiParams<T> = {
 
 export const API_BASE_URL = BASE_URL;
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = "4W7CAF4-7PG4YKZ-QJY0GWJ-KHPZX9D";
 
 export const axiosRequest = async <TRequestData, TResponseData = void>({
   data,
@@ -52,6 +52,9 @@ export const axiosRequest = async <TRequestData, TResponseData = void>({
     url,
     params,
     onUploadProgress,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   };
 
   if (isFetching) {
@@ -71,7 +74,7 @@ export const axiosRequest = async <TRequestData, TResponseData = void>({
     );
     config.headers = { ...config.headers, ...header };
   }
-
+  console.log(API_KEY, "api key");
   if (API_KEY) {
     config.headers = {
       ...config.headers,
