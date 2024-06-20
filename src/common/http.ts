@@ -4,7 +4,6 @@ import axios, {
   AxiosRequestConfig,
   Method,
 } from "axios";
-import qs from "qs";
 import { BASE_URL } from "./constants/url";
 let isFetching: boolean = false;
 

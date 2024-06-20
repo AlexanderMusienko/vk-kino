@@ -1,7 +1,7 @@
 import { axiosRequest } from "@/common/http";
 import { IMovie } from "../models/movie.model";
 import { ENDPOINTS } from "@/common/constants/url";
-import { TApiResponse, TMovieFilters } from "@/shared/types/api.type";
+import { TApiResponse } from "@/shared/types/api.type";
 
 export class MovieAPI {
   constructor() {}

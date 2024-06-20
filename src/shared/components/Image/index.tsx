@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { NoImage } from "@/assets/icons/no-image";
 import { SxProps, Theme } from "@mui/material";
 import { S } from "./ui";

@@ -1,5 +1,4 @@
 import { useTheme } from "@mui/material";
-import React from "react";
 
 export const NoImage = () => {
   const theme = useTheme();

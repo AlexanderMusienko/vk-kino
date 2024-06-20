@@ -4,9 +4,7 @@ import {
   Autocomplete,
   Container,
   InputLabel,
-  Slider,
   TextField,
-  styled,
 } from "@mui/material";
 import { GENRES } from "@/common/constants/api";
 import { TMovieFilters } from "@/shared/types/api.type";
