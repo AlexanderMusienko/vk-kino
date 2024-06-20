@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { Box, Chip, Grow, Typography, useTheme } from "@mui/material";
 import { Image } from "@/shared/components/Image";
 import { Text } from "@/shared/ui/Text";
-import qs from "qs";
 import { useStores } from "@/common/hooks/use-stores";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
@@ -12,17 +11,13 @@ export const Movie = observer(() => {
   const {
     moviesStore: { getCurrentMovie, isLoading, currentMovie },
   } = useStores();
+  const theme = useTheme();
 
   const { id } = useParams();
-  const theme = useTheme();
 
   useEffect(() => {
     getCurrentMovie(Number(id));
   }, [id]);
-
-  console.log(
-    qs.stringify({ a: "bbb", b: ["123", "111"] }, { indices: false })
-  );
 
   return (
     <>

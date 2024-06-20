@@ -6,6 +6,7 @@ import {
   InputLabel,
   Slider,
   TextField,
+  styled,
 } from "@mui/material";
 import { GENRES } from "@/common/constants/api";
 import { TMovieFilters } from "@/shared/types/api.type";
@@ -17,6 +18,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { S } from "./ui";
 
 const genresOptions = GENRES.map(({ name }) => ({
   label: name,
@@ -82,7 +84,6 @@ export const FiltersControl: FC<TFiltersControl> = ({ onChange, onClick }) => {
       years: { from: year[0], to: year[1] },
       genres: genres,
     };
-    console.log(filters);
     onChange && onChange(filters);
   }, [rating, year, genres]);
 
@@ -100,13 +101,21 @@ export const FiltersControl: FC<TFiltersControl> = ({ onChange, onClick }) => {
           vertical: "bottom",
           horizontal: "left",
         }}
+        slotProps={{
+          paper: {
+            sx: {
+              width: "80%",
+              maxWidth: "400px",
+            },
+          },
+        }}
       >
         <Container sx={{ padding: 2 }}>
           <Autocomplete
             multiple
             id="combo-box-demo"
             options={genresOptions}
-            sx={{ width: 300 }}
+            sx={{ maxWidth: "100%" }}
             renderInput={(params) => <TextField {...params} label="Жанр" />}
             onChange={onGenresChange}
             value={genresOptions.filter((option) =>
@@ -116,8 +125,10 @@ export const FiltersControl: FC<TFiltersControl> = ({ onChange, onClick }) => {
 
           <InputLabel sx={{ marginTop: 3 }}>Рейтинг</InputLabel>
           <Container style={{ padding: "12px" }}>
-            <Slider
-              sx={{ marginTop: 5 }}
+            <S.CustomSlider
+              sx={{
+                marginTop: 5,
+              }}
               value={rating}
               onChange={onRatingChange}
               step={0.1}
@@ -130,7 +141,7 @@ export const FiltersControl: FC<TFiltersControl> = ({ onChange, onClick }) => {
 
           <InputLabel>Год выпуска</InputLabel>
           <Container style={{ padding: "12px" }}>
-            <Slider
+            <S.CustomSlider
               sx={{ marginTop: 5 }}
               value={year}
               onChange={onYearChange}

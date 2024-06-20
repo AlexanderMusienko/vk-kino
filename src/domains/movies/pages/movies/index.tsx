@@ -1,6 +1,5 @@
-import { MOVIES_LIST_MOCK } from "../../mock";
 import { MovieItem } from "./components/MovieItem";
-import { Button, Grid, Pagination } from "@mui/material";
+import { Grid, Pagination } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { LoadingMovies } from "./components/LoadingMovies";
 import { useStores } from "@/common/hooks/use-stores";
@@ -19,7 +18,6 @@ export const Movies = observer(() => {
 
   const onFiltersApply = (filters: TMovieFilters) => {
     setFilters(stringifyMovieFilters(filters));
-    console.log(filters);
   };
 
   const onPaginationChange = (event: ChangeEvent<unknown>, value: number) => {
@@ -34,7 +32,7 @@ export const Movies = observer(() => {
   }, [filters]);
 
   useEffect(() => {
-    if (page !== 1) {
+    if (page !== 1 && paginationInfo?.currentPage) {
       getMoviesList(page, filters);
     }
   }, [page]);
