@@ -8,12 +8,26 @@ import { TMovieFilters } from "@/shared/types/api.type";
 import { ChangeEvent, useEffect, useState } from "react";
 import { stringifyMovieFilters } from "../../utils/filter";
 
+const initialFilters: TMovieFilters = {
+  genres: [],
+  years: {
+    from: 1900,
+    to: 2024,
+  },
+  rating: {
+    from: 0,
+    to: 10,
+  },
+};
+
+const initialQSFilters = stringifyMovieFilters(initialFilters);
+
 export const Movies = observer(() => {
   const {
     moviesStore: { isLoading, moviesList, getMoviesList, paginationInfo },
   } = useStores();
 
-  const [filters, setFilters] = useState<string>();
+  const [filters, setFilters] = useState<string>(initialQSFilters);
   const [page, setPage] = useState<number>(1);
 
   const onFiltersApply = (filters: TMovieFilters) => {

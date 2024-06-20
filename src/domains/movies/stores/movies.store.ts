@@ -16,7 +16,7 @@ export class MoviesStore {
     this.rootStore = rootStore;
   }
 
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   paginationInfo?: TPaginationInfo = undefined;
 

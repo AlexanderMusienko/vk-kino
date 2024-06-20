@@ -41,33 +41,35 @@ export const Movie = observer(() => {
               >
                 <Image
                   alt={
-                    currentMovie.name ||
-                    currentMovie.alternativeName ||
+                    currentMovie?.name ||
+                    currentMovie?.alternativeName ||
                     "poster"
                   }
                   src={
-                    currentMovie.poster.url || currentMovie.poster.previewUrl
+                    currentMovie?.poster?.url ||
+                    currentMovie?.poster?.previewUrl
                   }
                   sx={{
                     borderRadius: "24px",
                     overflow: "hidden",
                     minWidth: "300px",
+                    minHeight: "400px"
                   }}
                 />
               </Box>
             </Grow>
             <Box display="flex" flexDirection="column" gap={1}>
-              {(!!currentMovie.name || !!currentMovie.alternativeName) && (
+              {(!!currentMovie?.name || !!currentMovie?.alternativeName) && (
                 <Grow in={true} timeout={500}>
                   <Typography variant={"h1"}>
-                    {currentMovie.name || currentMovie.alternativeName}
+                    {currentMovie?.name || currentMovie?.alternativeName}
                   </Typography>
                 </Grow>
               )}
-              {currentMovie.alternativeName && currentMovie.name && (
+              {currentMovie?.alternativeName && currentMovie?.name && (
                 <Grow in={true} timeout={600}>
                   <Typography variant={"h3"} color={theme.palette.grey[500]}>
-                    {currentMovie.alternativeName}
+                    {currentMovie?.alternativeName}
                   </Typography>
                 </Grow>
               )}
@@ -78,22 +80,22 @@ export const Movie = observer(() => {
               )}
               {currentMovie?.genres.length > 0 && (
                 <Box flexDirection="row" display="flex" gap={1} flexWrap="wrap">
-                  {currentMovie.genres.map(({ name }) => (
+                  {currentMovie?.genres.map(({ name }) => (
                     <Chip variant="outlined" label={name} />
                   ))}
                 </Box>
               )}
               <Box flexDirection="row" display="flex" gap={1}>
-                {!!currentMovie.rating.imdb && (
-                  <Chip label={`IMDB: ${currentMovie.rating.imdb}`} />
+                {!!currentMovie?.rating?.imdb && (
+                  <Chip label={`IMDB: ${currentMovie?.rating?.imdb}`} />
                 )}
-                {!!currentMovie.rating.kp && (
-                  <Chip label={`КП: ${currentMovie.rating.kp}`} />
+                {!!currentMovie?.rating?.kp && (
+                  <Chip label={`КП: ${currentMovie?.rating?.kp}`} />
                 )}
               </Box>
-              {currentMovie.description ? (
+              {currentMovie?.description ? (
                 <Text color={theme.palette.text.secondary}>
-                  {currentMovie.description}
+                  {currentMovie?.description}
                 </Text>
               ) : (
                 <Text color={theme.palette.text.secondary}>
