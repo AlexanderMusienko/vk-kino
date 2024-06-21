@@ -1,4 +1,4 @@
-import { MovieItem } from "./components/MovieItem";
+import { MovieItem } from "@/domains/movies/components/MovieItem";
 import { Grid, Pagination } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { LoadingMovies } from "./components/LoadingMovies";

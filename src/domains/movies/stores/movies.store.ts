@@ -1,5 +1,5 @@
 import { RootStore } from "@/common/stores/root.store";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, reaction } from "mobx";
 import { IMovie } from "../models/movie.model";
 import { MovieAPI } from "../services/movie.service";
 
@@ -14,15 +14,44 @@ export class MoviesStore {
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
+
+    this.setFavMoviesIDs(
+      JSON.parse(localStorage.getItem("favMoviesIDs") || "[]")
+    );
+
+    reaction(
+      () => this.favMoviesIDs,
+      () => {
+        console.log("favMoviesIDs", this.favMoviesIDs);
+        localStorage.setItem("favMoviesIDs", JSON.stringify(this.favMoviesIDs));
+      }
+    );
   }
 
   isLoading: boolean = true;
 
   paginationInfo?: TPaginationInfo = undefined;
 
+  favMoviesIDs: number[] = [];
+
+  favMoviesList: IMovie[] = [];
+
   moviesList: IMovie[] = [];
 
   currentMovie: IMovie | null = null;
+
+  addToFav = (id: number) => {
+    console.log("added to fav", id);
+    this.favMoviesIDs = [...this.favMoviesIDs, id];
+  };
+
+  removeFromFav = (removeID: number) => {
+    this.favMoviesIDs = this.favMoviesIDs.filter((id) => id !== removeID);
+  };
+
+  setFavMoviesIDs = (ids: number[]) => {
+    this.favMoviesIDs = ids;
+  };
 
   getCurrentMovie = (id: number) => {
     this.isLoading = true;
@@ -45,6 +74,18 @@ export class MoviesStore {
           currentPage: res.page,
           allPages: res.pages,
         };
+        this.isLoading = false;
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  };
+
+  getFavMoviesList = (qsIDs: string) => {
+    this.isLoading = true;
+    return MovieAPI.getMoviesListByIDS(qsIDs)
+      .then((res) => {
+        this.favMoviesList = res.docs;
         this.isLoading = false;
       })
       .finally(() => {

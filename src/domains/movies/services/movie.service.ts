@@ -19,4 +19,11 @@ export class MovieAPI {
       method: "GET",
     });
   }
+
+  static getMoviesListByIDS(qsIDs: string) {
+    return axiosRequest<undefined, TApiResponse<IMovie[]>>({
+      url: ENDPOINTS.getMoviesByIDs(qsIDs),
+      method: "GET",
+    });
+  }
 }

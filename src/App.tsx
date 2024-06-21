@@ -4,6 +4,7 @@ import { PageLayout } from "./shared/layouts/PageLayout";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Movies } from "./domains/movies/pages/movies";
 import { Movie } from "./domains/movies/pages/movie";
+import { Favorites } from "./domains/movies/favorites";
 import { observer } from "mobx-react-lite";
 import { useStores } from "./common/hooks/use-stores";
 import { useMemo } from "react";
@@ -42,6 +43,10 @@ function App() {
           <Route element={<PageLayout />}>
             <Route path={ROUTES_MAPPING.PUBLIC.MOVIES} element={<Movies />} />
             <Route path={ROUTES_MAPPING.PUBLIC.MOVIE} element={<Movie />} />
+            <Route
+              path={ROUTES_MAPPING.PUBLIC.FAVORITES}
+              element={<Favorites />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

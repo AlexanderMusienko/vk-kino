@@ -6,4 +6,5 @@ export const ENDPOINTS = {
     filters
       ? `/movie?limit=50&page=${pageNumber}&${filters}`
       : `/movie?limit=50&page=${pageNumber}`,
+  getMoviesByIDs: (qsIDs: string) => `/movie?${qsIDs}`,
 };

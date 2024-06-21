@@ -7,8 +7,6 @@ import axios, {
 import { BASE_URL } from "./constants/url";
 let isFetching: boolean = false;
 
-export const ACCESS_TOKEN_KEY = "accessToken";
-
 export interface IErrorMessage {
   errorMessage?: string;
   error?: string;
