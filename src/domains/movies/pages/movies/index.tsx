@@ -37,7 +37,7 @@ export const Movies = observer(() => {
   const onPaginationChange = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-
+  
   useEffect(() => {
     if (page === 1) {
       getMoviesList(page, filters);
@@ -59,7 +59,7 @@ export const Movies = observer(() => {
       {isLoading ? (
         <LoadingMovies />
       ) : (
-        moviesList.length > 0 &&
+        moviesList?.length > 0 &&
         moviesList.map((movie) => (
           <Grid item xs={12} sm={4} lg={3}>
             <MovieItem key={movie.id} {...movie} />

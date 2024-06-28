@@ -22,7 +22,6 @@ export class MoviesStore {
     reaction(
       () => this.favMoviesIDs,
       () => {
-        console.log("favMoviesIDs", this.favMoviesIDs);
         localStorage.setItem("favMoviesIDs", JSON.stringify(this.favMoviesIDs));
       }
     );
@@ -40,8 +39,11 @@ export class MoviesStore {
 
   currentMovie: IMovie | null = null;
 
+  setIsLoading = (isLoading: boolean) => {
+    this.isLoading = isLoading;
+  };
+
   addToFav = (id: number) => {
-    console.log("added to fav", id);
     this.favMoviesIDs = [...this.favMoviesIDs, id];
   };
 
@@ -54,42 +56,45 @@ export class MoviesStore {
   };
 
   getCurrentMovie = (id: number) => {
-    this.isLoading = true;
+    this.setIsLoading(true);
     return MovieAPI.getMovie(id)
       .then((res) => {
         this.currentMovie = res;
-        this.isLoading = false;
+        this.setIsLoading(false);
       })
-      .finally(() => {
-        this.isLoading = false;
+      .catch((err) => {
+        console.log(err);
+        this.setIsLoading(false);
       });
   };
 
   getMoviesList = (page: number, filters?: string) => {
-    this.isLoading = true;
-    return MovieAPI.getMoviesList(page, filters)
+    this.setIsLoading(true);
+    MovieAPI.getMoviesList(page, filters)
       .then((res) => {
         this.moviesList = res.docs;
         this.paginationInfo = {
           currentPage: res.page,
           allPages: res.pages,
         };
-        this.isLoading = false;
+        this.setIsLoading(false);
       })
-      .finally(() => {
-        this.isLoading = false;
+      .catch((err) => {
+        console.log(err);
+        this.setIsLoading(false);
       });
   };
 
   getFavMoviesList = (qsIDs: string) => {
-    this.isLoading = true;
+    this.setIsLoading(true);
     return MovieAPI.getMoviesListByIDS(qsIDs)
       .then((res) => {
         this.favMoviesList = res.docs;
-        this.isLoading = false;
+        this.setIsLoading(false);
       })
-      .finally(() => {
-        this.isLoading = false;
+      .catch((err) => {
+        console.log(err);
+        this.setIsLoading(false);
       });
   };
 }

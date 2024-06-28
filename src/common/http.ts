@@ -26,7 +26,10 @@ export type ApiParams<T> = {
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
 };
 
-export const API_BASE_URL = BASE_URL;
+export const API_BASE_URL =
+  import.meta.env.VITE_MODE === "development"
+    ? "http://localhost:4200"
+    : BASE_URL;
 
 const API_KEY = "4W7CAF4-7PG4YKZ-QJY0GWJ-KHPZX9D";
 

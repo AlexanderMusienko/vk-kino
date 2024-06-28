@@ -21,10 +21,10 @@ export const Favorites = observer(() => {
     }
   }, []);
 
-  return favMoviesIDs.length > 0 ? (
+  return favMoviesIDs?.length > 0 ? (
     <Grid container alignItems="stretch" spacing={2}>
-      {favMoviesIDs.length > 0 &&
-        favMoviesList.map(
+      {!!favMoviesIDs?.length &&
+        favMoviesList?.map(
           (movie) =>
             favMoviesIDs?.includes(+movie.id) && (
               <Grid item xs={12} sm={4} lg={3}>
